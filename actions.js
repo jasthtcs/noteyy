@@ -33,6 +33,10 @@ const notepadMenuButton = document.getElementById('notepad-menu-button');
 
 
 function toggleOption(optionElement) {
+    if (!optionElement || typeof optionElement.textContent === 'undefined') {
+        // console.warn("toggleOption called with invalid element:", optionElement);
+        return;
+    }
     let text = optionElement.textContent;
     if (text.endsWith('*')) {
         optionElement.textContent = text.slice(0, -1);
@@ -214,7 +218,8 @@ hardshipOption.addEventListener('click', function() {
     toggleOption(hardshipOption);
     const isActive = hardshipOption.textContent.endsWith('*');
     hardshipMenuButton.classList.toggle('hidden', !isActive);
-    notepadMenuButton.classList.toggle('hidden', !isActive);
+    // notepadMenuButton should remain visible for panel switching.
+    // Its visibility is managed by default HTML and panel switching logic, not directly by hardshipOption state.
 });
 
 amountInputsContainer.addEventListener('click', function(event) {
