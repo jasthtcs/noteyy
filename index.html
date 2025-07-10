@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notepad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="notepad-container">
+        <div class="menu-bar">
+            <div class="menu-item">File</div>
+            <div class="menu-item">Edit</div>
+            <div class="menu-item">Format</div>
+            <div class="menu-item">View</div>
+            <div class="menu-item">Help</div>
+            <div id="notepad-menu-button" class="menu-item">Notepad</div>
+            <div id="hardship-menu-button" class="menu-item hidden">Hardship</div>
+        </div>
+        
+        <div id="notepad-panel" class="panel active-panel">
+            <div class="text-area-container">
+                <div class="notepad-header">
+                    <div><span id="no-answer-option" class="clickable-option">No Answer*</span></div>
+                    <div><span id="payment-taken-option" class="clickable-option">Payment Taken</span></div>
+                </div>
+                <div id="payment-details" class="hidden">
+                    <div id="amount-inputs-container"></div>
+                    <div class="status-options">
+                        <span class="status-option" data-status="Arrears">Arrears</span>
+                        <span class="status-option" data-status="Current">Current</span>
+                    </div>
+                </div>
+                <div class="action-picker-container">
+                    <div class="action-line">
+                        <span id="action-label" class="clickable-option">Action:</span>
+                        <span id="action-selection"></span>
+                    </div>
+                    <div id="action-options" class="hidden">
+                        <div class="action-option-item">Blank</div>
+                        <div class="action-option-item">Uncon approved</div>
+                        <div class="action-option-item">SMS sent</div>
+                        <div class="action-option-item">Email sent</div>
+                        <div class="action-option-item">Paynow link sent</div>
+                    </div>
+                </div>
+                <div id="caller-type-wrapper" class="hidden">
+                    <div class="caller-type-options">
+                        <span class="caller-type-option" data-caller-type="AH">[AH]</span>
+                        <span class="caller-type-option" data-caller-type="ATP">ATP</span>
+                        <span class="caller-type-option" data-caller-type="UTP">UTP</span>
+                    </div>
+                    <div class="call-reason-container">
+                        <div class="call-reason-line">
+                            <span id="call-reason-label" class="clickable-option">Call Reason:</span>
+                            <span id="call-reason-selection">Insufficient funds</span>
+                        </div>
+                        <div id="call-reason-options" class="hidden">
+                            <div class="call-reason-option-item">Insufficient funds</div>
+                            <div class="call-reason-option-item">Invalid card</div>
+                            <div class="call-reason-option-item">Expired card</div>
+                            <div class="call-reason-option-item">Stolen card</div>
+                            <div class="call-reason-option-item">Lost card</div>
+                        </div>
+                    </div>
+                    <div class="add-details-container">
+                        <span id="add-bank-option" class="clickable-option">Add Bank</span>
+                        <span id="add-card-option" class="clickable-option">Add Card</span>
+                        <input type="text" id="last-four-input" class="hidden" placeholder="XXXX" maxlength="4">
+                    </div>
+                     <div class="extra-options-container">
+                        <div><span id="hardship-option" class="clickable-option">Hardship</span></div>
+                        <div><span id="arrangement-option" class="clickable-option">Arrangement</span></div>
+                    </div>
+                    <div id="arrangement-details" class="hidden">
+                        <div id="arrangement-rows-container"></div>
+                    </div>
+                    <div class="housekeeping-container">
+                        <div class="housekeeping-label">Housekeeping:</div>
+                        <div class="housekeeping-option-line">
+                            <span id="email-option" class="clickable-option">Email</span>
+                            <input type="text" id="email-input" class="hidden" placeholder="new@email.com">
+                        </div>
+                        <div class="housekeeping-option-line">
+                            <span id="atp-option" class="clickable-option">ATP</span>
+                            <div id="atp-sub-options" class="hidden">
+                                <span class="atp-type-option" data-atp-type="New">[New]</span>
+                                <span class="atp-type-option" data-atp-type="Updated">Updated</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recap-options-container">
+                        <div class="recap-option-line">
+                            <span id="npd-option" class="clickable-option">NPD</span>
+                            <span id="npd-date-display"></span>
+                            <input type="date" id="npd-date-input" class="hidden-date-input">
+                        </div>
+                        <div class="recap-option-line">
+                            <span id="sso-option" class="clickable-option">SSO</span>
+                        </div>
+                    </div>
+                </div>
+                <textarea class="text-area"></textarea>
+            </div>
+            <div class="status-bar">
+                <div id="copy-notification"></div>
+                <div class="status-items">
+                    <div class="status-item" id="initials-status">JE</div>
+                    <div class="status-item">Ln 1, Col 1</div>
+                    <div class="status-item" id="zoom-status">100%</div>
+                    <div class="status-item">Windows (CRLF)</div>
+                    <div class="status-item">UTF-8</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="hardship-panel" class="panel hidden">
+            <div class="hardship-container">
+                <p class="hardship-spiel">To help our team understand your situation better, I need to ask a few questions. Please know there are no wrong answers, and if any question makes you uncomfortable, just let me know and we can skip it. Once we're done, I'll forward this to our dedicated hardship team for assessment. Is that okay with you?</p>
+                
+                <div class="hardship-category-container">
+                    <span id="hardship-category-label" class="clickable-option">Hardship Type:</span>
+                    <span id="hardship-category-selection">Lost Job or Unemployed</span>
+                    <div id="hardship-category-options" class="hidden">
+                        <div class="hardship-option-item" data-value="unemployed">Lost Job or Unemployed</div>
+                        <div class="hardship-option-item" data-value="reducedIncome">Reduced Income</div>
+                        <div class="hardship-option-item" data-value="overcommitted">Overcommitted</div>
+                        <div class="hardship-option-item" data-value="unexpectedBills">Unexpected Bills</div>
+                        <div class="hardship-option-item" data-value="injuryIllness">Injury or Illness</div>
+                        <div class="hardship-option-item" data-value="familyBreakdown">Family Breakdown</div>
+                        <div class="hardship-option-item" data-value="financialAbuse">Domestic or Financial Abuse</div>
+                        <div class="hardship-option-item" data-value="naturalDisaster">Natural Disaster</div>
+                        <div class="hardship-option-item" data-value="other">Other</div>
+                    </div>
+                </div>
+
+                <div id="hardshipQuestionsContainer"></div>
+
+                <p class="hardship-section-header">Set Expectations</p>
+                <ul class="expectations-list">
+                    <li>Someone will get back to you within 5 business days.</li>
+                    <li>If we are unable to reach out via phone we will send you an email.</li>
+                    <li>We might require some supporting documentation from you to help with your assessment.</li>
+                    <li>We have temporarily Paused your repayments until we have completed our Hardship assessment and have a resolution for you.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="ui.js"></script>
+    <script src="zoom.js"></script>
+    <script src="hardship_logic.js"></script>
+    <script src="actions.js"></script>
+    <script src="shortcuts.js"></script>
+</body>
+</html>
